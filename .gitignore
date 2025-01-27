@@ -7,6 +7,9 @@ venv/
 # Ignore all __pycache__ directories
 **/__pycache__/
 
+# Ignore the 'data' folder
+data/
+
 # Ignore the 'archive' folder
 archive/
 

@@ -101,8 +101,9 @@ def evaluate_model(model, data_loader, k=10):
 
 if __name__ == "__main__":
 
+    k = 5
     data_path = "data/ratings_test.csv"
     model_path = "path/to/model"
     test_loader = load_dataloader(data_path)
     model, _, _ = load_model(model_path)
-    result = evaluate_model(model, test_loader, k=5)
+    result = evaluate_model(model, test_loader, k=k)

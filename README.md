@@ -53,12 +53,77 @@ For collaborative filtering, the model is implemented using **Neural Collaborati
 ### Prerequisites:
 
 - Python 3.x
-- [Movies Dataset](https://www.kaggle.com/datasets/rounakbanik/the-movies-dataset/) (Download and place the `archive/` folder in the project folder)
+- [Movies Dataset](https://www.kaggle.com/datasets/rounakbanik/the-movies-dataset/)
 
 ### Installation Steps:
 
 1. Clone the repository:
-   ```bash
-   git clone <repository_url>
-   cd <repository_name>
+
    ```
+   git clone [github.com/AlexandruSamoila/movie_recommender.git](https://github.com/AlexandruSamoila/movie_recommender.git)
+   ```
+
+2. Create and activate a virtual environment:
+
+   ```
+   python3 -m venv /path/to/new/venv
+   source /path/to/new/venv/bin/activate  # On Windows, use venv\\Scripts\\activate
+   ```
+
+3. Install the required packages:
+
+   ```
+   pip install -r requirements.txt
+   ```
+
+4. Download the [Movies Dataset](https://www.kaggle.com/datasets/rounakbanik/the-movies-dataset/) and place the `archive/` folder in the project folder
+
+## Running the system
+
+Before running the system, the dataset must be processed. To process the dataset, run the following command:
+
+```
+python3 src/dataset_process.py
+```
+
+This will generate a `data/` folder containing all the processed CSV files that the system will use.
+
+### Collaborative Filtering Recommender
+
+The collaborative filtering recommender requires training. To do this:
+
+1. Modify the hyperparameters in `src/train.py` according to your preferences
+
+2. Run the following command to train the model:
+
+```
+   python3 src/train.py
+```
+
+This will train the model using the training data and save the trained model to a checkpoint.
+
+To evaluate the model, you need to:
+
+1. Modify the k parameter and the model path in `src/evaluate.py` to match your desired evaluation settings.
+
+2. Run the following command to evaluate the trained model:
+
+```
+   python3 src/evaluate.py
+```
+
+This will compute evaluation metrics nDCG@k, Precision@k, and Recall@k based on the test dataset.
+
+Once everything is set up, you can run the system and interact with the movie recommendation models:
+
+```
+python3 src/main.py
+```
+
+### Content-Based Recommender:
+
+To run the content-based recommender, select option 1 when prompted. This will load the content_movies.csv dataset and recommend movies with similar themes and genres based on a given movie.
+
+### Collaborative Filtering Recommender:
+
+To run the collaborative filtering recommender, select option 2 when prompted. The system will load the movie and ratings data, initialize the NCF model, and provide personalized movie recommendations based on user preferences.

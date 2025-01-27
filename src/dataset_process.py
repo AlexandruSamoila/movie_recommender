@@ -1,6 +1,7 @@
 import pandas as pd
 import ast
 import re
+import os
 
 
 def process_movies(df_movies, vote_count_min):
@@ -213,6 +214,7 @@ if __name__ == "__main__":
     content_movies = content_movies.merge(keywords_processed, on="id", how="left")
     content_movies = content_movies.merge(credits_processed, on="id", how="left")
 
+    os.makedirs("data", exist_ok=True)
     # Save the processed datasets to CSV
     content_movies.to_csv("data/content_movies.csv", index=False)
     collaborative_movies.to_csv("data/collaborative_movies.csv", index=False)

@@ -282,6 +282,7 @@ if __name__ == "__main__":
 
     # Save the trained model and its hyperparameters
     timestamp = datetime.now().strftime("%Y%m%d_%H%M")
+
     # Folder name to save the trained model
     models_dir = "checkpoints"
     os.makedirs(models_dir, exist_ok=True)
