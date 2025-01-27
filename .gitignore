@@ -1,0 +1,11 @@
+# Ignore the virtual environment
+venv/
+
+# Ignore all __pycache__ directories
+**/__pycache__/
+
+# Ignore the 'archive' folder
+archive/
+
+# Ignore the 'checkpoints' folder
+checkpoints/
