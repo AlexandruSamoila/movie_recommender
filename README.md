@@ -12,29 +12,11 @@ The dataset used in this project is available [here on Kaggle](https://www.kaggl
 
 ### 1. Finding Movies with Similar Themes and Genres (Content-Based Recommender):
 
-In this use case, the system identifies movies with similar themes and genres to a given movie. The goal is to help users discover movies that align with their tastes, based on shared attributes like genres and themes.
+In this use case, the system identifies movies with similar themes and genres to a given movie. The goal is to help users discover movies that align with their tastes, based on shared attributes like genres and themes. The system utilizes the sentence-transformers model for encoding movie overviews and MultiLabelBinarizer for encoding movie genres. The combined embeddings are used to calculate cosine similarities between movies and suggest the most similar ones.
 
 ### 2. Personalized Movie Recommendations Based on User Preferences (Collaborative Filtering):
 
-This use case provides personalized movie recommendations by analyzing the preferences of users. The system identifies users with similar movie preferences and recommends movies based on what similar users have liked. The collaborative filtering approach is used to suggest movies that a user might enjoy, based on the collective ratings and preferences of similar users.
-
-## System Architecture:
-
-The system utilizes two recommendation models:
-
-- **Content-Based Recommender**: Uses the genres and themes of movies to recommend similar ones based on user input.
-- **Collaborative Filtering Recommender**: Leverages past user ratings and interactions to recommend personalized movies.
-
-### Collaborative Filtering:
-
-For collaborative filtering, the model is implemented using **Neural Collaborative Filtering (NCF)**. The model is trained on user ratings, learning to predict ratings for unseen movies. The model is a combination of a Matrix Factorization (MF) and a Multi-Layer Perceptron (MLP) and is based on the paper: [Neural Collaborative Filtering](https://arxiv.org/abs/1708.05031)
-
-## Features:
-
-- **Content-Based Recommendations**: Get recommendations for movies similar to a given movie based on shared genres and themes.
-- **Collaborative Filtering Recommendations**: Get personalized movie recommendations based on a user’s previous ratings and preferences.
-- **Model Training**: Train the collaborative filtering model using the **Neural Collaborative Filtering (NCF)** approach.
-- **Evaluation Metrics**: Evaluate the model performance using nDCG, Precision@k, and Recall@k.
+This use case provides personalized movie recommendations by analyzing the preferences of users. The system identifies users with similar movie preferences and recommends movies based on what similar users have liked. The collaborative filtering approach is used to suggest movies that a user might enjoy, based on the collective ratings and preferences of similar users. The model is implemented using **Neural Collaborative Filtering (NCF)**. The model is trained on user ratings, learning to predict ratings for unseen movies. The model is a combination of a Matrix Factorization (MF) and a Multi-Layer Perceptron (MLP) and is based on the paper: [Neural Collaborative Filtering](https://arxiv.org/abs/1708.05031)
 
 ## Setup and Installation:
 

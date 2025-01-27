@@ -13,7 +13,7 @@ class ContentRecommender:
 
         The system utilizes the `sentence-transformers` model for encoding movie overviews and `MultiLabelBinarizer`
         for encoding movie genres into a format suitable for similarity comparison. The combined embeddings from these
-        two features (overview and genres) are used to calculate cosine similarities between movies and suggest
+        two features are used to calculate cosine similarities between movies and suggest
         the most similar ones.
 
         Args:
