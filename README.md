@@ -1,12 +1,5 @@
 # Exploring Movie Recommendation Systems Using the Movies Dataset
 
-## Objective:
-
-Develop an AI model to meet the requirements of two distinct use cases for movie recommendation systems:
-
-1. Finding movies with similar themes and genres (Content-Based Recommender)
-2. Personalized movie recommendations based on user preferences (Collaborative Filtering)
-
 ## Introduction:
 
 This project delves into the world of movie recommendation systems using the **Movies Dataset** from Kaggle. The dataset consists of valuable information about movies, such as titles, genres, release dates, and user ratings, which is used to build AI models capable of recommending movies based on themes, genres, and user preferences.
