@@ -30,7 +30,7 @@ This use case provides personalized movie recommendations by analyzing the prefe
 1. Clone the repository:
 
    ```
-   git clone [github.com/AlexandruSamoila/movie_recommender.git](https://github.com/AlexandruSamoila/movie_recommender.git)
+   git clone https://github.com/AlexandruSamoila/movie_recommender.git
    ```
 
 2. Create and activate a virtual environment:
@@ -102,9 +102,9 @@ To run the collaborative filtering recommender, select option 2 when prompted. T
 
 After training and evaluating the collaborative filtering model, the following evaluation metrics were obtained for k=50:
 
-nDCG@50: 0.727
-Precision@50: 0.713
-Recall@50: 0.424
+- nDCG@50: 0.727
+- Precision@50: 0.713
+- Recall@50: 0.424
 
 While the precision and nDCG scores indicate that the model is performing relatively well at ranking movies, the recall suggests that there are opportunities for further improvement, as it captures a smaller proportion of relevant movies.
 
