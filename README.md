@@ -15,16 +15,11 @@ This project delves into the world of movie recommendation systems using the **M
 
 The dataset used in this project is available [here on Kaggle](https://www.kaggle.com/datasets/rounakbanik/the-movies-dataset/).
 
-The dataset consists of two main files:
-
-- **movies_metadata.csv**: Contains information about movies, including titles, genres, release dates, etc.
-- **ratings.csv**: Contains user ratings for movies, including user IDs, movie IDs, and ratings.
-
 ## Use Cases:
 
 ### 1. Finding Movies with Similar Themes and Genres (Content-Based Recommender):
 
-In this use case, the system identifies movies with similar themes and genres to a given movie. For example, if a user has rated **"Inception"** with five stars, the system will recommend other movies with similar themes and genres, such as **"Interstellar"** and **"The Matrix"**. The goal is to help users discover movies that align with their tastes, based on shared attributes like genres and themes.
+In this use case, the system identifies movies with similar themes and genres to a given movie. The goal is to help users discover movies that align with their tastes, based on shared attributes like genres and themes.
 
 ### 2. Personalized Movie Recommendations Based on User Preferences (Collaborative Filtering):
 
@@ -39,14 +34,14 @@ The system utilizes two recommendation models:
 
 ### Collaborative Filtering:
 
-For collaborative filtering, the model is implemented using **Neural Collaborative Filtering (NCF)**. The model is trained on user ratings and movie interactions, learning to predict ratings for unseen movies. The model architecture uses embeddings for users and movies, followed by multi-layer perceptrons (MLP) to predict ratings.
+For collaborative filtering, the model is implemented using **Neural Collaborative Filtering (NCF)**. The model is trained on user ratings, learning to predict ratings for unseen movies. The model is a combination of a Matrix Factorization (MF) and a Multi-Layer Perceptron (MLP) and is based on the paper: [Neural Collaborative Filtering](https://arxiv.org/abs/1708.05031)
 
 ## Features:
 
 - **Content-Based Recommendations**: Get recommendations for movies similar to a given movie based on shared genres and themes.
 - **Collaborative Filtering Recommendations**: Get personalized movie recommendations based on a user’s previous ratings and preferences.
 - **Model Training**: Train the collaborative filtering model using the **Neural Collaborative Filtering (NCF)** approach.
-- **Evaluation Metrics**: Evaluate the model performance using metrics such as nDCG, Precision@k, and Recall@k.
+- **Evaluation Metrics**: Evaluate the model performance using nDCG, Precision@k, and Recall@k.
 
 ## Setup and Installation:
 
@@ -127,3 +122,21 @@ To run the content-based recommender, select option 1 when prompted. This will l
 ### Collaborative Filtering Recommender:
 
 To run the collaborative filtering recommender, select option 2 when prompted. The system will load the movie and ratings data, initialize the NCF model, and provide personalized movie recommendations based on user preferences.
+
+## Results
+
+After training and evaluating the collaborative filtering model, the following evaluation metrics were obtained for k=50:
+
+nDCG@50: 0.727
+Precision@50: 0.713
+Recall@50: 0.424
+
+While the precision and nDCG scores indicate that the model is performing relatively well at ranking movies, the recall suggests that there are opportunities for further improvement, as it captures a smaller proportion of relevant movies.
+
+For the content-based recommendation task, the system successfully identified movies with similar themes and genres. For example, when searching for movies similar to The Godfather, the following movies were recommended:
+
+1. The Godfather: Part II
+2. The Godfather: Part III
+3. Black Mass
+4. The Replacement Killers
+5. Find Me Guilty
