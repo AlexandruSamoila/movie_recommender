@@ -2,7 +2,7 @@
 
 ## Introduction:
 
-This project delves into the world of movie recommendation systems using the **Movies Dataset** from Kaggle. The dataset consists of valuable information about movies, such as titles, genres, release dates, and user ratings, which is used to build AI models capable of recommending movies based on themes, genres, and user preferences.
+This project aims to explore movie recommendation systems using the **Movies Dataset** from Kaggle.
 
 ## Dataset:
 
@@ -10,11 +10,11 @@ The dataset used in this project is available [here on Kaggle](https://www.kaggl
 
 ## Use Cases:
 
-### 1. Finding Movies with Similar Themes and Genres (Content-Based Recommender):
+### 1. Finding Movies with Similar Themes and Genres:
 
 In this use case, the system identifies movies with similar themes and genres to a given movie. The goal is to help users discover movies that align with their tastes, based on shared attributes like genres and themes. The system utilizes the sentence-transformers model for encoding movie overviews and MultiLabelBinarizer for encoding movie genres. The combined embeddings are used to calculate cosine similarities between movies and suggest the most similar ones.
 
-### 2. Personalized Movie Recommendations Based on User Preferences (Collaborative Filtering):
+### 2. Personalized Movie Recommendations Based on User Preferences:
 
 This use case provides personalized movie recommendations by analyzing the preferences of users. The system identifies users with similar movie preferences and recommends movies based on what similar users have liked. The collaborative filtering approach is used to suggest movies that a user might enjoy, based on the collective ratings and preferences of similar users. The model is implemented using **Neural Collaborative Filtering (NCF)**. The model is trained on user ratings, learning to predict ratings for unseen movies. The model is a combination of a Matrix Factorization (MF) and a Multi-Layer Perceptron (MLP) and is based on the paper: [Neural Collaborative Filtering](https://arxiv.org/abs/1708.05031)
 
@@ -102,11 +102,9 @@ To run the collaborative filtering recommender, select option 2 when prompted. T
 
 After training and evaluating the collaborative filtering model, the following evaluation metrics were obtained for k=50:
 
-- nDCG@50: 0.727
-- Precision@50: 0.713
-- Recall@50: 0.424
-
-While the precision and nDCG scores indicate that the model is performing relatively well at ranking movies, the recall suggests that there are opportunities for further improvement, as it captures a smaller proportion of relevant movies.
+- nDCG@50: 0.872
+- Precision@50: 0.696
+- Recall@50: 0.622
 
 For the content-based recommendation task, the system successfully identified movies with similar themes and genres. For example, when searching for movies similar to The Godfather, the following movies were recommended:
 

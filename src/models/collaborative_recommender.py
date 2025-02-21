@@ -190,17 +190,28 @@ class CollaborativeRecommender:
         movies_counter = 0  # Initialize a counter
 
         for _, row in user_ratings.iterrows():
-            # Stop after reaching the maximum number of movies
+            # Stop after reaching the maximum number of movies to process
             if movies_counter >= max_movies_history:
                 break
+
+            # Retrieve the TMDB ID corresponding to the movieId from the links dataset
             movie_id = links_df[links_df["movieId"] == row["movieId"]]["tmdbId"].values[
                 0
             ]
+
+            # Find the movie details in the movies dataset using the TMDB ID
             movie = movies_df[movies_df["id"] == movie_id]
+
+            # If the movie is not found, print a message and skip this iteration
             if movie.empty:
                 print(f"Movie ID {movie_id} not found in movies_df. Skipping...")
-                continue  # Skip this iteration if no match is found
+                continue
+
+            # Extract the first row (since filtering results in a DataFrame)
             movie_info = movie.iloc[0]
+
+            # Print the movie title along with the user's rating
             print(f"{movie_info['title']}: {row['rating']}/5.0")
 
+            # Increment the counter to track the number of processed movies
             movies_counter += 1

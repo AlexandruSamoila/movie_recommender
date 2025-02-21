@@ -50,7 +50,7 @@ if __name__ == "__main__":
         print("Initializing the Collaborative Filtering Recommender...")
 
         # Load the pre-trained model from the saved path
-        model_path = "checkpoints/20250126_2340_NCF_h128-64-32-16/model.pth"
+        model_path = "/path/to/model.pth"
         model, user_id_map, movie_id_map = load_model(model_path)
 
         # Initialize the CollaborativeRecommender with necessary data and model

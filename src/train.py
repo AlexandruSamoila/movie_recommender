@@ -14,7 +14,7 @@ import os
 from datetime import datetime
 
 
-def one_epoch(model, data_loader, loss_fn, opt=None):
+def one_epoch(model, data_loader, loss_fn, opt=None, scheduler=None):
     """
     Runs one epoch of training or validation.
 
@@ -51,10 +51,12 @@ def one_epoch(model, data_loader, loss_fn, opt=None):
             opt.zero_grad()  # Reset gradients
             loss.backward()  # Backpropagate gradients
             opt.step()  # Update model parameters
+            if scheduler:
+                scheduler.step()
 
         losses.append(loss.item())
-
-    return np.mean(losses)
+    avg_loss = np.mean(losses)
+    return avg_loss
 
 
 def custom_loss(predictions, targets):
@@ -82,7 +84,9 @@ def custom_loss(predictions, targets):
     )
 
     # Total loss is a weighted combination of these components
-    return mse_loss + 0.2 * variance_loss + 0.1 * range_loss
+    total_loss = mse_loss + 0.2 * variance_loss + 0.1 * range_loss
+
+    return total_loss
 
 
 def train(
@@ -135,15 +139,12 @@ def train(
     t = tqdm(range(max_epochs))
     for epoch in t:
         # Training phase
-        train_loss = one_epoch(model, train_loader, loss_fn, opt)
+        train_loss = one_epoch(model, train_loader, loss_fn, opt, scheduler)
         # Validation phase
         valid_loss = one_epoch(model, val_loader, loss_fn)
 
         train_losses.append(train_loss)
         valid_losses.append(valid_loss)
-
-        # Update learning rate based on validation loss
-        scheduler.step(valid_loss)
 
         # Early stopping
         if valid_loss < best_valid_loss:
@@ -208,6 +209,7 @@ def distribution_analysis(ratings):
 EMBEDDING_DIM_MF = 16  # Matrix Factorization embedding dimension
 EMBEDDING_DIM_MLP = 64  # MLP embedding dimension
 HIDDEN_UNITS = [128, 64, 32, 16]  # Hidden units for MLP layers
+DROPOUT = 0.2
 
 # Training parameters
 BATCH_SIZE = 64  # Batch size for training
@@ -263,7 +265,12 @@ if __name__ == "__main__":
 
     # Initialize the NCF model with specified hyperparameters and move it to the device
     model = NCF(
-        num_users, num_movies, EMBEDDING_DIM_MF, EMBEDDING_DIM_MLP, HIDDEN_UNITS
+        num_users,
+        num_movies,
+        EMBEDDING_DIM_MF,
+        EMBEDDING_DIM_MLP,
+        HIDDEN_UNITS,
+        DROPOUT,
     ).to(device)
 
     # Start the training process and plot the training history
@@ -282,7 +289,6 @@ if __name__ == "__main__":
 
     # Save the trained model and its hyperparameters
     timestamp = datetime.now().strftime("%Y%m%d_%H%M")
-
     # Folder name to save the trained model
     models_dir = "checkpoints"
     os.makedirs(models_dir, exist_ok=True)
